@@ -125,7 +125,8 @@ void SysTick_Init(void)
 	SysTick->LOAD = 900;//9M/9000,1ms中断
 	SysTick->CTRL |= 1;//使能
 }
-
+extern u8 exit_cnt;
+extern u8 exit_low_cnt;
 /*
 滴答始终倒数到0异常处理
 
@@ -134,6 +135,13 @@ void SysTick_Handler(void)
 {
 	static u16 systick_cnt = 0;
 	systick_cnt ++;
+	
+	if(exit_low_cnt <200)
+	exit_low_cnt ++;
+	if(exit_cnt < 200)
+	exit_cnt ++;
+	
+	
 	if((systick_cnt % 50) == 0)
 	{
 		Time_5ms_Flag = 1;

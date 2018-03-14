@@ -21,7 +21,7 @@ void UART1_Init(u32 bound)
     RCC->APB2RSTR|=1<<14;	//复位串口
     RCC->APB2RSTR&=~(1<<14);//
 	
-    USART1->BRR=0x1D4C;//设置波特率
+    USART1->BRR=0x271;//设置波特率
     USART1->CR1|=0x200c;//设置停止位
 }
 

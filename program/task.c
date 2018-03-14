@@ -8,6 +8,8 @@
 //mode:jtag,swd模式设置;00,全使能;01,使能SWD;10,全关闭;
 //CHECK OK	
 
+
+
 void Open_SW(void)
 {
 	RCC->APB2ENR|=1<<0;     //开启辅助时钟	   
@@ -27,25 +29,78 @@ void EXTI_Init(void)
 	EXTI->RTSR |= 1<< 1;	//上升沿触发
 	EXTI->FTSR |= 1<< 1;	//下降沿触发
 	
-	//NVIC_Set(1,1,7,2);		//设置串口中断
+	NVIC_Set(1,1,7,2);		//设置串口中断
 	EXTI->IMR |= 1 << 1;	//开放中断线1的中断请求
 }
 
 u8 exti_flag = 0;
+
+u8 exit_cnt = 0;
+u8 exit_low_cnt = 0;
+
+u8 RF433_Buf[128];
+u8 RF433_Pt = 0;
 void EXTI1_IRQHandler(void)
 {
+	static u8 begin = 0;
+	static u8 len = 0;
+	
 	EXTI->PR |= 1<< 1;	//清除中断标志位
-	exti_flag = 1;
+	
+	//上升沿
+	if(GPIOB->IDR &0x02)
+	{
+		exit_cnt = 0;
+		len = 0;
+		if(begin == 0)
+		{
+			if(exit_low_cnt > 13)
+			{
+				begin = 1;
+				UART1_Send(0xaa);	
+			}
+		}
+		else
+		{
+			if(exit_low_cnt > 13)
+			begin = 0;
+			//UART1_Send(0xbb);	
+		}
+	}
+	//下降沿
+	else
+	{
+		exit_low_cnt = 0;
+		if(begin == 1)
+		{
+			//if(((exit_cnt >= 3) && (exit_cnt <=5))||((exit_cnt >= 9) && (exit_cnt <=10)))
+			if(((exit_cnt >= 2) && (exit_cnt <=5)))	
+			{
+				//RF433_Buf[RF433_Pt] = exit_cnt;
+				UART1_Send(0x00);	
+			}
+			else if(((exit_cnt >= 8) && (exit_cnt <=11)))
+			{
+				UART1_Send(0x01);	
+			}
+			else
+			{
+				begin = 0;
+				//UART1_Send(0xff);
+			}
+		}
+	}
+	//exti_flag = 1;
 }
 
 
 void Loop_Fast(void)
 {
-	if(exti_flag == 1)
-	{
-		exti_flag = 0;
-		UART1_Send(0xbb);
-	}
+//	if(exti_flag == 1)
+//	{
+//		exti_flag = 0;
+//		UART1_Send(0xbb);
+//	}
 }
 
 /*

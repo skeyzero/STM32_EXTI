@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\test.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\test.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Wed Mar 14 10:11:30 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Wed Mar 14 15:43:57 2018
 <BR><P>
 <H3>Maximum Stack Usage =         40 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -447,29 +447,37 @@ Global Symbols
 
 <P><STRONG><a name="[8b]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[54]"></a>CAN_Init</STRONG> (Thumb, 278 bytes, Stack size 0 bytes, can.o(i.CAN_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<P><STRONG><a name="[56]"></a>CAN_Init</STRONG> (Thumb, 278 bytes, Stack size 0 bytes, can.o(i.CAN_Init))
+<BR><BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
-<P><STRONG><a name="[14]"></a>EXTI1_IRQHandler</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, task.o(i.EXTI1_IRQHandler))
+<P><STRONG><a name="[14]"></a>EXTI1_IRQHandler</STRONG> (Thumb, 148 bytes, Stack size 8 bytes, task.o(i.EXTI1_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EXTI1_IRQHandler
+</UL>
+<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART1_Send
+</UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[53]"></a>EXTI_Init</STRONG> (Thumb, 88 bytes, Stack size 0 bytes, task.o(i.EXTI_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<P><STRONG><a name="[4d]"></a>EXTI_Init</STRONG> (Thumb, 102 bytes, Stack size 8 bytes, task.o(i.EXTI_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = EXTI_Init &rArr; NVIC_Set
+</UL>
+<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Set
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
-<P><STRONG><a name="[4c]"></a>HW_Init</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, task.o(i.HW_Init))
+<P><STRONG><a name="[4f]"></a>HW_Init</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, task.o(i.HW_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = HW_Init &rArr; TIM3_Init &rArr; NVIC_Set
 </UL>
-<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART1_Send
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART1_Init
-<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_Init
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysClk_Init
-<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_PriorityGroupConfig
-<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_Init
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Open_SW
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_Init
+<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART1_Send
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART1_Init
+<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_Init
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
+<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysClk_Init
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_PriorityGroupConfig
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_Init
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Open_SW
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -494,37 +502,34 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[56]"></a>Loop_Fast</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, task.o(i.Loop_Fast))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Loop_Fast
-</UL>
-<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART1_Send
-</UL>
-<BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[59]"></a>Loop_Fast</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, task.o(i.Loop_Fast))
+<BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4e]"></a>NVIC_PriorityGroupConfig</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, misc.o(i.NVIC_PriorityGroupConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<P><STRONG><a name="[51]"></a>NVIC_PriorityGroupConfig</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, misc.o(i.NVIC_PriorityGroupConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
-<P><STRONG><a name="[59]"></a>NVIC_Set</STRONG> (Thumb, 154 bytes, Stack size 24 bytes, sys.o(i.NVIC_Set))
+<P><STRONG><a name="[4e]"></a>NVIC_Set</STRONG> (Thumb, 154 bytes, Stack size 24 bytes, sys.o(i.NVIC_Set))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = NVIC_Set
 </UL>
-<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_Init
+<BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_Init
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_Init
 </UL>
 
-<P><STRONG><a name="[50]"></a>Open_SW</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, task.o(i.Open_SW))
-<BR><BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<P><STRONG><a name="[53]"></a>Open_SW</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, task.o(i.Open_SW))
+<BR><BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
-<P><STRONG><a name="[4d]"></a>SysClk_Init</STRONG> (Thumb, 138 bytes, Stack size 0 bytes, sys.o(i.SysClk_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<P><STRONG><a name="[50]"></a>SysClk_Init</STRONG> (Thumb, 138 bytes, Stack size 0 bytes, sys.o(i.SysClk_Init))
+<BR><BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
-<P><STRONG><a name="[c]"></a>SysTick_Handler</STRONG> (Thumb, 148 bytes, Stack size 0 bytes, sys.o(i.SysTick_Handler))
+<P><STRONG><a name="[c]"></a>SysTick_Handler</STRONG> (Thumb, 184 bytes, Stack size 0 bytes, sys.o(i.SysTick_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[4f]"></a>SysTick_Init</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, sys.o(i.SysTick_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<P><STRONG><a name="[52]"></a>SysTick_Init</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, sys.o(i.SysTick_Init))
+<BR><BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
 <P><STRONG><a name="[38]"></a>SystemInit</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SystemInit))
@@ -540,21 +545,21 @@ Global Symbols
 <P><STRONG><a name="[2a]"></a>TIM3_IRQHandler</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, tim.o(i.TIM3_IRQHandler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[51]"></a>TIM3_Init</STRONG> (Thumb, 92 bytes, Stack size 8 bytes, tim.o(i.TIM3_Init))
+<P><STRONG><a name="[54]"></a>TIM3_Init</STRONG> (Thumb, 92 bytes, Stack size 8 bytes, tim.o(i.TIM3_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = TIM3_Init &rArr; NVIC_Set
 </UL>
-<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Set
+<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Set
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
-</UL>
-
-<P><STRONG><a name="[52]"></a>UART1_Init</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, uart.o(i.UART1_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
-<P><STRONG><a name="[55]"></a>UART1_Send</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, uart.o(i.UART1_Send))
-<BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Loop_Fast
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<P><STRONG><a name="[55]"></a>UART1_Init</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, uart.o(i.UART1_Init))
+<BR><BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+</UL>
+
+<P><STRONG><a name="[4c]"></a>UART1_Send</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, uart.o(i.UART1_Send))
+<BR><BR>[Called By]<UL><LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI1_IRQHandler
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
 <P><STRONG><a name="[32]"></a>USART1_IRQHandler</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, uart.o(i.USART1_IRQHandler))
@@ -566,13 +571,13 @@ Global Symbols
 <P><STRONG><a name="[43]"></a>main</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = main &rArr; HW_Init &rArr; TIM3_Init &rArr; NVIC_Set
 </UL>
-<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Loop_Fast
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Loop_Fast
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Loop_5ms
 <LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Loop_50ms
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Loop_500ms
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Loop_20ms
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Loop_100ms
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
