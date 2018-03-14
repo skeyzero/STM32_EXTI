@@ -69,9 +69,7 @@ void USART1_IRQHandler(void)                	//串口1中断服务程序
 	Rx1_Buf[Rx1_P] = rx_data;
 	Rx1_P ++;
 	Rx1_P = Rx1_P % Rx1_Buf_Length;
-	//UART1_Send(rx_data);
 } 
-
 
 void USART2_IRQHandler(void)                	//串口1中断服务程序
 {
@@ -82,8 +80,5 @@ void USART2_IRQHandler(void)                	//串口1中断服务程序
 	Rx2_Buf[Rx2_P] = rx_data;
 	Rx2_P ++;
 	Rx2_P = Rx2_P % Rx2_Buf_Length;
-	//UART1_Send(rx_data);
 } 
 	
-
-
