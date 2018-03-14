@@ -47,7 +47,7 @@
 AFIO->EXTICR1 = 0 |(1<<4)|(2<<8)|(6 <<12);//表示 PA0作为EXTI0外部中断输入，PB1作为EXTI1外部中断输入，PG3作为EXTI3外部中断输入。
 
 ## MDK编程：
-`
+`  
 //设置PB0上下边沿触发中断
 EXTI_Init(void)
 {
@@ -59,7 +59,7 @@ EXTI_Init(void)
 	EXTI->RTSR |= 1<< 1;	//上升沿触发
 	EXTI->FTSR |= 1<< 1;	//下降沿触发
 	EXTI->IMR |= 1 << 1;	//开发中断线1中断请求
-}
+}  
 `
 
 
