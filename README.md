@@ -48,18 +48,18 @@ AFIO->EXTICR1 = 0 |(1<<4)|(2<<8)|(6 <<12);//表示 PA0作为EXTI0外部中断输
 
 ## MDK编程：
 `  
-//设置PB0上下边沿触发中断
-EXTI_Init(void)
-{
-	RCC->APB2ENR |= 1<<0;	//使能AFIO时钟
-	RCC->APB2ENR |= 1<<3;	//使能PB时钟
-	
-	AFIO->EXTICR[0] |= 1 << 0;//选择PB与EXTIO0连接，即PB0作为外部中断源
-	
-	EXTI->RTSR |= 1<< 1;	//上升沿触发
-	EXTI->FTSR |= 1<< 1;	//下降沿触发
-	EXTI->IMR |= 1 << 1;	//开发中断线1中断请求
-}  
+	//设置PB0上下边沿触发中断
+	EXTI_Init(void)
+	{
+		RCC->APB2ENR |= 1<<0;	//使能AFIO时钟
+		RCC->APB2ENR |= 1<<3;	//使能PB时钟
+		
+		AFIO->EXTICR[0] |= 1 << 0;//选择PB与EXTIO0连接，即PB0作为外部中断源
+		
+		EXTI->RTSR |= 1<< 1;	//上升沿触发
+		EXTI->FTSR |= 1<< 1;	//下降沿触发
+		EXTI->IMR |= 1 << 1;	//开发中断线1中断请求
+	}  
 `
 
 
